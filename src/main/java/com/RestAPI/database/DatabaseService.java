@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.RestAPI.MiniOffice.Profile;
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -26,7 +25,6 @@ public class DatabaseService {
 			
 			
 			BasicDBObject searchQuery = new BasicDBObject();
-			//searchQuery.put("name", "Prajan");
 			DBCursor cursor = table.find(searchQuery);
 			
 			while (cursor.hasNext()){
@@ -42,10 +40,8 @@ public class DatabaseService {
 
 			}
 			
-			//System.out.println("outside loop");
 			
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return coll;
@@ -64,7 +60,6 @@ public class DatabaseService {
 		document.put("address", profile.getAddress());
 		table.insert(document);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -79,13 +74,10 @@ public class DatabaseService {
 			DBCollection table = db.getCollection("profiles");
 			
 			BasicDBObject searchQuery = new BasicDBObject();
-			searchQuery.put("name", name);
-			//DBCursor cursor = table.find(searchQuery);
-			
+			searchQuery.put("name", name);	
 			table.remove(searchQuery);
 
 			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
@@ -104,7 +96,6 @@ public class DatabaseService {
 		BasicDBObject querry = new BasicDBObject().append("name", profile.getName());
 		table.update(querry, document);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
